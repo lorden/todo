@@ -1,0 +1,27 @@
+CREATE TABLE  `todo`.`task` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`name` VARCHAR( 255 ) NOT NULL ,
+`category_id` INT NOT NULL ,
+`date` DATETIME NOT NULL ,
+`estimated` INT NOT NULL COMMENT  'in seconds',
+`spent` INT NOT NULL COMMENT  'in seconds',
+`interrupted` INT NOT NULL ,
+`completed` TINYINT( 1 ) NOT NULL ,
+`comments` TEXT NOT NULL ,
+`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB
+
+CREATE TABLE  `todo`.`category` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`name` VARCHAR( 255 ) NOT NULL ,
+PRIMARY KEY (  `id` )
+) ENGINE = INNODB
+
+CREATE TABLE  `todo`.`log` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+`task_id` INT NOT NULL ,
+`field` VARCHAR( 255 ) NOT NULL ,
+`old_value` VARCHAR( 255 ) NOT NULL ,
+`new_value` VARCHAR( 255 ) NOT NULL
+) ENGINE = INNODB
